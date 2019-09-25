@@ -73,10 +73,7 @@ class PostController extends Controller
     }
 
 
-    public function show(Post $post)
-    {
-        //
-    }
+
 
     public function edit(Post $post)
     {
@@ -111,6 +108,11 @@ class PostController extends Controller
         $post->save();
         session()->flash('success', 'Post Updated');
         return redirect('/posts');
+    }
+    public function show(Post $post)
+    {
+
+        return Inertia::render('Post/Show', compact('post'));
     }
 
     public function imageDelete(Post $post)

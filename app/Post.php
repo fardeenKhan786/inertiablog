@@ -45,5 +45,5 @@ class Post extends Model
                 'delete' => Gate::denies('edit-post', $this),
             ]
         ];
-    } //asdasdasdda
+    } 
 }

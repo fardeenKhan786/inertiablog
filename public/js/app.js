@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"1":"23fd17a91328d3730e9d","3":"355f1f4dff28f15bed08","5":"ab4d7b0eb9f4cd2677a4","6":"c87d5d906e8c50db49f7","7":"3e792c1f7ab83ebabebf","8":"353433206091ddff4be8","10":"000b666e7a1685aa5a1d","11":"d42d8de991d120deaa77","12":"dbf71ebbbda944a0b7c6","15":"ba233bdc67c069c3e949","16":"68b4ac33d1570adf2447","17":"0f513b8a86148d0437c3","18":"6bb432c5ded7ec49ff0b","19":"3bf7368f99aab2b5c9ad","20":"783984f5b3eef76f5811"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"1":"23fd17a91328d3730e9d","2":"8f69f5be72d3215a8f2c","3":"2b7b42ea688dfa12bf7a","5":"f96220e8a69a12725ff2","6":"83c5c6885abe90336531","8":"996967de3b6b12dc52ad","9":"06c954ecdea2b522c820","10":"000b666e7a1685aa5a1d","11":"c3da2f5751e6259368fc","12":"ac7a16953dc85542c044","14":"5c5c4b1ccdf7ed84274c","15":"7bfebf46391dce30e09e","17":"3d8a6015dee669c0d2cc","18":"e7473516f48a623d9ecd","19":"326f096680e4f2c3b460","20":"edb8f543fa1eff935d10","21":"d2bfb67f9e305d8f9737","22":"901a937eea11be7e917c"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -11449,124 +11449,154 @@ var map = {
 	"./About": [
 		"./resources/js/Pages/About.vue",
 		1,
-		11,
-		18
+		14,
+		21
 	],
 	"./About.vue": [
 		"./resources/js/Pages/About.vue",
 		1,
-		11,
-		18
+		14,
+		21
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.vue",
 		1,
-		6,
-		15
+		8,
+		18
 	],
 	"./Auth/Login.vue": [
 		"./resources/js/Pages/Auth/Login.vue",
 		1,
-		6,
-		15
+		8,
+		18
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.vue",
-		12
+		15
 	],
 	"./Auth/Register.vue": [
 		"./resources/js/Pages/Auth/Register.vue",
-		12
+		15
 	],
 	"./Contact": [
 		"./resources/js/Pages/Contact.vue",
 		1,
-		11,
-		19
+		14,
+		22
 	],
 	"./Contact.vue": [
 		"./resources/js/Pages/Contact.vue",
 		1,
-		11,
-		19
+		14,
+		22
 	],
 	"./Home": [
 		"./resources/js/Pages/Home.vue",
 		1,
-		11,
-		8,
-		16
+		14,
+		12,
+		19
 	],
 	"./Home.vue": [
 		"./resources/js/Pages/Home.vue",
 		1,
-		11,
-		8,
-		16
+		14,
+		12,
+		19
 	],
 	"./Post/Create": [
 		"./resources/js/Pages/Post/Create.vue",
 		1,
-		5,
-		11,
 		6,
+		14,
+		8,
 		3,
-		7
+		5,
+		9
 	],
 	"./Post/Create.vue": [
 		"./resources/js/Pages/Post/Create.vue",
 		1,
-		5,
-		11,
 		6,
+		14,
+		8,
 		3,
-		7
+		5,
+		9
 	],
 	"./Post/Edit": [
 		"./resources/js/Pages/Post/Edit.vue",
 		1,
-		11,
-		6,
+		14,
+		8,
 		3,
+		5,
 		10
 	],
 	"./Post/Edit.vue": [
 		"./resources/js/Pages/Post/Edit.vue",
 		1,
-		11,
-		6,
+		14,
+		8,
 		3,
+		5,
 		10
 	],
 	"./Post/Index": [
 		"./resources/js/Pages/Post/Index.vue",
 		1,
-		11,
-		6,
-		8,
-		20
+		14,
+		12,
+		17
 	],
 	"./Post/Index.vue": [
 		"./resources/js/Pages/Post/Index.vue",
 		1,
-		11,
-		6,
+		14,
+		12,
+		17
+	],
+	"./Post/Show": [
+		"./resources/js/Pages/Post/Show.vue",
+		1,
+		14,
+		2
+	],
+	"./Post/Show.vue": [
+		"./resources/js/Pages/Post/Show.vue",
+		1,
+		14,
+		2
+	],
+	"./Profile/Index": [
+		"./resources/js/Pages/Profile/Index.vue",
+		1,
+		14,
 		8,
-		20
+		3,
+		11
+	],
+	"./Profile/Index.vue": [
+		"./resources/js/Pages/Profile/Index.vue",
+		1,
+		14,
+		8,
+		3,
+		11
 	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.vue",
 		1,
-		11,
-		8,
-		17
+		14,
+		12,
+		20
 	],
 	"./Welcome.vue": [
 		"./resources/js/Pages/Welcome.vue",
 		1,
-		11,
-		8,
-		17
+		14,
+		12,
+		20
 	]
 };
 function webpackAsyncContext(req) {
