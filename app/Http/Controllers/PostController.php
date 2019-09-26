@@ -111,7 +111,7 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
-
+        $post = $post->load(['user', 'category']);
         return Inertia::render('Post/Show', compact('post'));
     }
 

@@ -79,26 +79,6 @@
 					</template>
 				</card>
 			</div>
-
-			<!-- <div
-				class="absolute w-ful h-full top-0 bottom-0 left-0 right-0"
-				v-if="openModalPublish"
-				@click="openModalPublish=false"
-			>
-				<card with-footer class="shadow-lg max-w-lg mx-auto opacity-100 mt-20">
-					<heading size="heading" class="mb-4">Confirm Publish ?</heading>
-					<heading>Read Carefully Before Publishing The Post</heading>
-					<template #footer>
-						<loading-button
-							variant="secondary"
-							variant-type="outline"
-							type="button"
-							@click="openModalPublish=false"
-						>Cancel</loading-button>
-						<loading-button ref="deleteButton" @click="publishPost">Yes, Publish</loading-button>
-					</template>
-				</card>
-			</div>-->
 		</div>
 	</layout>
 </template>

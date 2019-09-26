@@ -5,7 +5,7 @@
 				<a href="#" class="py-3">
 					<div
 						class="w-10 h-10 rounded-full bg-blue-500 inline-flex items-center justify-center text-white font-bold"
-					>S.</div>
+					>Fa</div>
 				</a>
 				<div
 					class="inline-block inline-flex items-center justify-center w-8 h-8 rounded-full mr-2 cursor-pointer md:hidden"

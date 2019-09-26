@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\User;
+use App\Category;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -45,5 +47,5 @@ class Post extends Model
                 'delete' => Gate::denies('edit-post', $this),
             ]
         ];
-    } 
+    }
 }
