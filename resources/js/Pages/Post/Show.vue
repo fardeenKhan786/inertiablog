@@ -20,49 +20,30 @@
 							<span class="text-sm text-green-400">{{post.category.category_name}}</span>
 						</div>
 						<div class="pt-8 pb-6">
-							<p class="text-2xl tracking-wider border-b-2 border-gray-800 inline-block mb-4">6 Comments</p>
-							<div class="py-6 flex">
-								<div>
-									<avatar :name="post.user.name" color="blue"></avatar>
-								</div>
-								<div class="pl-4">
-									<p class="text-lg">John Doe</p>
-									<p class="text-sm text-gray-500 tracking-wider uppercase py-1">January 26,2018</p>
-									<p
-										class="text-sm tracking-wide text-gray-700"
-									>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quod ea cum quam necessitatibus laudantium similique ipsum tenetur. Nulla, recusandae rem. Itaque commodi cupiditate perspiciatis omnis minus, autem quibusdam est!</p>
-									<button class="bg-gray-700 text-white px-4 py-1 mt-3 rounded">Reply</button>
-								</div>
-							</div>
+							<p
+								class="text-2xl tracking-wider border-b-2 border-gray-800 inline-block mb-4"
+							>{{post.comments_count}}&nbsp;Comments</p>
+							<textarea-input
+								v-model="form.comments"
+								:errors="errors.comments"
+								@keydown="delete errors.comments"
+								placeholder="Add your comment"
+							></textarea-input>
 
-							<div class="py-6 flex">
+							<div class="mt-3">
+								<loading-button ref="submitButton" @click="commentCreate">Submit</loading-button>
+							</div>
+							<div class="py-6 flex" v-for="comment in post.comments" :key="comment.id">
 								<div>
-									<avatar :name="post.user.name" color="blue"></avatar>
+									<avatar :name="comment.user.name" color="blue"></avatar>
 								</div>
 								<div class="pl-4">
-									<p class="text-lg">John Doe</p>
+									<p class="text-lg">{{comment.user.name}}</p>
 									<p class="text-sm text-gray-500 tracking-wider uppercase py-1">January 26,2018</p>
-									<p
-										class="text-sm tracking-wide text-gray-700"
-									>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eos explicabo accusantium aperiam eum deleniti assumenda dolores dolor, sint odit expedita neque repellat, necessitatibus sed, quod fuga. Accusamus, possimus autem.</p>
+									<p class="text-sm tracking-wide text-gray-700">{{comment.comments}}</p>
 									<button class="bg-gray-700 text-white px-4 py-1 mt-3 rounded">Reply</button>
 								</div>
 							</div>
-
-							<div class="py-6 flex">
-								<div>
-									<avatar :name="post.user.name" color="blue"></avatar>
-								</div>
-								<div class="pl-4">
-									<p class="text-lg">John Doe</p>
-									<p class="text-sm text-gray-500 tracking-wider uppercase py-1">January 26,2018</p>
-									<p
-										class="text-sm tracking-wide text-gray-700"
-									>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, aliquid nulla asperiores excepturi placeat quaerat officiis illo. Dolorum soluta nemo aliquid quam iste alias nulla cupiditate consectetur. Voluptatem, voluptatum nihil!</p>
-									<button class="bg-gray-700 text-white px-4 py-1 mt-3 rounded">Reply</button>
-								</div>
-							</div>
-							<textarea-input></textarea-input>
 						</div>
 					</div>
 				</div>
@@ -128,14 +109,37 @@
 import Layout from "@/Shared/Layout";
 import Avatar from "@/Shared/tuis/Avatar";
 import TextareaInput from "@/Shared/tuis/TextareaInput";
+import LoadingButton from "@/Shared/tuis/LoadingButton";
 
 export default {
 	components: {
 		Layout,
 		Avatar,
-		TextareaInput
+		TextareaInput,
+		LoadingButton
 	},
-	props: ["post"]
+	props: ["errors", "post"],
+	data() {
+		return {
+			form: {
+				comments: null
+			}
+		};
+	},
+
+	methods: {
+		commentCreate() {
+			this.$inertia
+				.post(`/post/${this.post.id}/comment`, this.form)
+				.then(res => {
+					this.$refs.submitButton.stopLoading();
+					this.form.comments = "";
+				})
+				.catch(() => {
+					this.$refs.submitButton.stopLoading();
+				});
+		}
+	}
 };
 </script>
 

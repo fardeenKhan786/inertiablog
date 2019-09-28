@@ -111,7 +111,9 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
-        $post = $post->load(['user', 'category']);
+        $post->load(['user', 'category', 'comments', 'comments.user']);
+        $post->comments_count = $post->comments->count();
+
         return Inertia::render('Post/Show', compact('post'));
     }
 

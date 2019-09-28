@@ -32,6 +32,8 @@ Route::get('/post/{post}/show', 'PostController@show');
 
 Route::get('/profile', 'ProfileController@Index');
 
+Route::post('post/{post}/comment', 'CommentController@store');
+
 
 
 Route::get('/home', function () {

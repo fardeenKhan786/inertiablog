@@ -170,7 +170,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("heading", { staticClass: "mb-6" }, [
-                  _vm._v(_vm._s(post.description))
+                  _vm._v(_vm._s(post.summary))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "flex items-center" }, [

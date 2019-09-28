@@ -10,7 +10,7 @@
 						<heading size="heading" class="mb-2">
 							<a :href="`/post/${post.id}/show`">{{post.title}}</a>
 						</heading>
-						<heading class="mb-6">{{post.description}}</heading>
+						<heading class="mb-6">{{post.summary}}</heading>
 						<div class="flex items-center">
 							<div class="flex items-center">
 								<div>
