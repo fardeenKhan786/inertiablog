@@ -4,11 +4,11 @@
 			<div class="w-3/5">
 				<heading size="heading" class="mb-3">Public Profile</heading>
 				<hr />
-				<text-input label="Name" class="mt-3"></text-input>
+				<text-input label="Name" v-model="form.name" class="mt-3">{{user.name}}</text-input>
 				<small
 					class="text-gray-700"
 				>Your name may appear around our blog. You can remove it at any time.</small>
-				<text-input label="Email" class="mt-3"></text-input>
+				<text-input label="Email" v-model="form.email" class="mt-3"></text-input>
 				<small
 					class="text-gray-700"
 				>You have set your email address to private. To toggle email privacy, go to email settings and uncheck "Keep my email address private."</small>
@@ -28,6 +28,26 @@
 				<file-input label="profile picture"></file-input>
 			</div>
 		</div>
+		<div class="flex mx-auto my-8">
+			<div class="w-3/5">
+				<heading size="heading" class="mb-3">Change Password</heading>
+
+				<hr />
+				<div class="my-4">
+					<text-input v-model="data.current_password" label="Current Password"></text-input>
+				</div>
+				<div class="my-4">
+					<text-input label="New Password" v-model="data.password"></text-input>
+				</div>
+				<div class="my-4">
+					<text-input v-model="data.password_confirmation" label="Confirm New Password"></text-input>
+				</div>
+				<div class="my-4">
+					<loading-button variant="success" @click="changePassword">Change Password</loading-button>
+				</div>
+			</div>
+			<div class="w-2/5"></div>
+		</div>
 	</layout>
 </template>
 
@@ -41,8 +61,21 @@ import FileInput from "@/Shared/tuis/FileInput";
 
 export default {
 	data() {
-		return {};
+		return {
+			form: {
+				name: this.user.name,
+				email: this.user.email
+			},
+			data: {
+				current_password: "",
+				password: "",
+				password_confirmation: ""
+			}
+		};
 	},
+
+	props: ["user"],
+
 	components: {
 		Heading,
 		FileInput,
@@ -50,6 +83,19 @@ export default {
 		Layout,
 		TextareaInput,
 		LoadingButton
+	},
+	methods: {
+		changePassword() {
+			this.$inertia
+				.post("/changePassword", this.data)
+				.then(res => {
+					// this.$refs.submitButton.stopLoading();
+					this.data = "";
+				})
+				.catch(() => {
+					// this.$refs.submitButton.stopLoading();
+				});
+		}
 	}
 };
 </script>

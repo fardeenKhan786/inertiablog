@@ -30,9 +30,12 @@ Route::post('/posts/image/{post}/delete', 'PostController@imageDelete');
 Route::post('/posts/{post}/publish', 'PublishController@update');
 Route::get('/post/{post}/show', 'PostController@show');
 
-Route::get('/profile', 'ProfileController@Index');
+Route::get('/profile', 'ProfileController@index');
 
 Route::post('post/{post}/comment', 'CommentController@store');
+
+Route::post('/changePassword', 'ProfileController@PasswordChange');
+
 
 
 

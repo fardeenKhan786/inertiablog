@@ -10,11 +10,18 @@ class CommentController extends Controller
 {
     public function store(Request $request, $post)
     {
-        $comments = $this->validate($request, [
-            'comments' => 'required'
-        ]);
+        $comment = $this->validate(
+            $request,
+            [
+                'comments' => 'required',
+                'parent_id' => 'required'
+            ],
+            [
+                'comments.required' => 'Comment field cannot be empty'
+            ]
+        );
         Comment::create(array_merge(
-            $comments,
+            $comment,
             [
                 'user_id' => auth()->user()->id,
                 'post_id' => $post,

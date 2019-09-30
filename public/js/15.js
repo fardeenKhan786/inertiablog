@@ -675,7 +675,7 @@ var render = function() {
                                         "block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600",
                                       attrs: { href: "#" }
                                     },
-                                    [_vm._v("Help & Feedback")]
+                                    [_vm._v("Settings")]
                                   ),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "border-t my-1" }),
@@ -709,7 +709,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      1166264384
+                      4242133371
                     )
                   })
                 ]
