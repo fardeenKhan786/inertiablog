@@ -4,7 +4,7 @@
 			<div class="w-3/5">
 				<heading size="heading" class="mb-3">Public Profile</heading>
 				<hr />
-				<text-input label="Name" v-model="form.name" class="mt-3">{{user.name}}</text-input>
+				<text-input label="Name" v-model="form.name" class="mt-3"></text-input>
 				<small
 					class="text-gray-700"
 				>Your name may appear around our blog. You can remove it at any time.</small>
@@ -14,14 +14,15 @@
 				>You have set your email address to private. To toggle email privacy, go to email settings and uncheck "Keep my email address private."</small>
 				<textarea-input
 					label="Bio"
+					v-model="form.bio"
 					class="mt-3 font-bold text-gray-700"
 					placeholder="Tell us a little bit about yourself"
 				></textarea-input>
-				<text-input label="Url" class="mt-3"></text-input>
-				<text-input label="Location" class="mt-3"></text-input>
+				<text-input v-model="form.url" label="Url" class="mt-3"></text-input>
+				<text-input v-model="form.location" label="Location" class="mt-3"></text-input>
 				<small class="text-gray-700 mb-2">You can share your location from where you belong</small>
 				<div>
-					<loading-button class="mt-3" variant="success">Update</loading-button>
+					<loading-button class="mt-3" variant="success" @click.prevent="updateProfile">Update</loading-button>
 				</div>
 			</div>
 			<div class="w-2/5 h-16 pl-12 mt-16">
@@ -33,17 +34,33 @@
 				<heading size="heading" class="mb-3">Change Password</heading>
 
 				<hr />
+
 				<div class="my-4">
-					<text-input v-model="data.current_password" label="Current Password"></text-input>
+					<text-input
+						:errors="errors.current_password"
+						@keydown="delete errors.current_password"
+						v-model="data.current_password"
+						label="Current Password"
+					></text-input>
 				</div>
 				<div class="my-4">
-					<text-input label="New Password" v-model="data.password"></text-input>
+					<text-input
+						:errors="errors.password"
+						@keydown="delete errors.password"
+						label="New Password"
+						v-model="data.password"
+					></text-input>
 				</div>
 				<div class="my-4">
-					<text-input v-model="data.password_confirmation" label="Confirm New Password"></text-input>
+					<text-input
+						:errors="errors.password_confirmation"
+						@keydown="delete errors.password_confirmation"
+						v-model="data.password_confirmation"
+						label="Confirm New Password"
+					></text-input>
 				</div>
 				<div class="my-4">
-					<loading-button variant="success" @click="changePassword">Change Password</loading-button>
+					<loading-button variant="success" @click.prevent="changePassword">Change Password</loading-button>
 				</div>
 			</div>
 			<div class="w-2/5"></div>
@@ -63,8 +80,11 @@ export default {
 	data() {
 		return {
 			form: {
-				name: this.user.name,
-				email: this.user.email
+				name: this.$page.auth.user.name,
+				email: this.$page.auth.user.email,
+				bio: this.$page.auth.user.bio,
+				url: this.$page.auth.user.url,
+				location: this.$page.auth.user.location
 			},
 			data: {
 				current_password: "",
@@ -74,7 +94,7 @@ export default {
 		};
 	},
 
-	props: ["user"],
+	props: ["errors"],
 
 	components: {
 		Heading,
@@ -87,14 +107,20 @@ export default {
 	methods: {
 		changePassword() {
 			this.$inertia
-				.post("/changePassword", this.data)
+				.post("/password-change", this.data)
 				.then(res => {
-					// this.$refs.submitButton.stopLoading();
-					this.data = "";
+					// this.data = {};
 				})
-				.catch(() => {
-					// this.$refs.submitButton.stopLoading();
-				});
+				.catch(() => {});
+		},
+
+		updateProfile() {
+			this.$inertia
+				.post("/profile-create", this.form)
+				.then(res => {
+					// this.data = {};
+				})
+				.catch(() => {});
 		}
 	}
 };

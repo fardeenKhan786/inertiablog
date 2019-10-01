@@ -34,7 +34,12 @@ Route::get('/profile', 'ProfileController@index');
 
 Route::post('post/{post}/comment', 'CommentController@store');
 
-Route::post('/changePassword', 'ProfileController@PasswordChange');
+Route::post('/password-change', 'PasswordChangeController@store');
+
+Route::post('/profile-create', 'ProfileController@store');
+
+
+
 
 
 

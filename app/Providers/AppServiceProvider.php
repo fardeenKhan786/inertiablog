@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
                         'name' => Auth::user()->name,
                         'email' => Auth::user()->email,
                         'role' => Auth::user()->role,
+                        'bio' => Auth::user()->profile ? Auth::user()->profile->bio : '',
+                        'url' => Auth::user()->profile ? Auth::user()->profile->url : '',
+                        'location' => Auth::user()->profile ? Auth::user()->profile->location : '',
                     ] : null,
                 ];
             },

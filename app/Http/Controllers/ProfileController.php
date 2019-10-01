@@ -12,13 +12,23 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        return Inertia::render('Profile/Index', compact('user'));
+        return Inertia::render('Profile/Index');
     }
 
-    public function PasswordChange(Request $request)
+    public function store(Request $request)
     {
-        $a = Hash::check($request->current_password, auth()->user()->password);
-        dd($a);
+        $userId = auth()->user()->id;
+        $profile = Profile::updateOrCreate(
+            [
+                'user_id' => $userId,
+            ],
+            [
+                'user_id' => $userId,
+                'bio' => $request->bio,
+                'url' => $request->url,
+                'location' => $request->location
+            ]
+        );
+        return redirect()->back();
     }
 }

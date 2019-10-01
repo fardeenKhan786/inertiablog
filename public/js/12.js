@@ -361,6 +361,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -371,8 +388,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        name: this.user.name,
-        email: this.user.email
+        name: this.$page.auth.user.name,
+        email: this.$page.auth.user.email,
+        bio: this.$page.auth.user.bio,
+        url: this.$page.auth.user.url,
+        location: this.$page.auth.user.location
       },
       data: {
         current_password: "",
@@ -381,7 +401,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  props: ["user"],
+  props: ["errors"],
   components: {
     Heading: _Shared_tuis_Heading__WEBPACK_IMPORTED_MODULE_0__["default"],
     FileInput: _Shared_tuis_FileInput__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -392,13 +412,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     changePassword: function changePassword() {
-      var _this = this;
-
-      this.$inertia.post("/changePassword", this.data).then(function (res) {
-        // this.$refs.submitButton.stopLoading();
-        _this.data = "";
-      })["catch"](function () {// this.$refs.submitButton.stopLoading();
-      });
+      this.$inertia.post("/password-change", this.data).then(function (res) {// this.data = {};
+      })["catch"](function () {});
+    },
+    updateProfile: function updateProfile() {
+      this.$inertia.post("/profile-create", this.form).then(function (res) {// this.data = {};
+      })["catch"](function () {});
     }
   }
 });
@@ -494,21 +513,17 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c(
-            "text-input",
-            {
-              staticClass: "mt-3",
-              attrs: { label: "Name" },
-              model: {
-                value: _vm.form.name,
-                callback: function($$v) {
-                  _vm.$set(_vm.form, "name", $$v)
-                },
-                expression: "form.name"
-              }
-            },
-            [_vm._v(_vm._s(_vm.user.name))]
-          ),
+          _c("text-input", {
+            staticClass: "mt-3",
+            attrs: { label: "Name" },
+            model: {
+              value: _vm.form.name,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "name", $$v)
+              },
+              expression: "form.name"
+            }
+          }),
           _vm._v(" "),
           _c("small", { staticClass: "text-gray-700" }, [
             _vm._v(
@@ -539,14 +554,38 @@ var render = function() {
             attrs: {
               label: "Bio",
               placeholder: "Tell us a little bit about yourself"
+            },
+            model: {
+              value: _vm.form.bio,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "bio", $$v)
+              },
+              expression: "form.bio"
             }
           }),
           _vm._v(" "),
-          _c("text-input", { staticClass: "mt-3", attrs: { label: "Url" } }),
+          _c("text-input", {
+            staticClass: "mt-3",
+            attrs: { label: "Url" },
+            model: {
+              value: _vm.form.url,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "url", $$v)
+              },
+              expression: "form.url"
+            }
+          }),
           _vm._v(" "),
           _c("text-input", {
             staticClass: "mt-3",
-            attrs: { label: "Location" }
+            attrs: { label: "Location" },
+            model: {
+              value: _vm.form.location,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "location", $$v)
+              },
+              expression: "form.location"
+            }
           }),
           _vm._v(" "),
           _c("small", { staticClass: "text-gray-700 mb-2" }, [
@@ -558,7 +597,16 @@ var render = function() {
             [
               _c(
                 "loading-button",
-                { staticClass: "mt-3", attrs: { variant: "success" } },
+                {
+                  staticClass: "mt-3",
+                  attrs: { variant: "success" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.updateProfile($event)
+                    }
+                  }
+                },
                 [_vm._v("Update")]
               )
             ],
@@ -592,7 +640,15 @@ var render = function() {
             { staticClass: "my-4" },
             [
               _c("text-input", {
-                attrs: { label: "Current Password" },
+                attrs: {
+                  errors: _vm.errors.current_password,
+                  label: "Current Password"
+                },
+                on: {
+                  keydown: function($event) {
+                    delete _vm.errors.current_password
+                  }
+                },
                 model: {
                   value: _vm.data.current_password,
                   callback: function($$v) {
@@ -610,7 +666,12 @@ var render = function() {
             { staticClass: "my-4" },
             [
               _c("text-input", {
-                attrs: { label: "New Password" },
+                attrs: { errors: _vm.errors.password, label: "New Password" },
+                on: {
+                  keydown: function($event) {
+                    delete _vm.errors.password
+                  }
+                },
                 model: {
                   value: _vm.data.password,
                   callback: function($$v) {
@@ -628,7 +689,15 @@ var render = function() {
             { staticClass: "my-4" },
             [
               _c("text-input", {
-                attrs: { label: "Confirm New Password" },
+                attrs: {
+                  errors: _vm.errors.password_confirmation,
+                  label: "Confirm New Password"
+                },
+                on: {
+                  keydown: function($event) {
+                    delete _vm.errors.password_confirmation
+                  }
+                },
                 model: {
                   value: _vm.data.password_confirmation,
                   callback: function($$v) {
@@ -649,7 +718,12 @@ var render = function() {
                 "loading-button",
                 {
                   attrs: { variant: "success" },
-                  on: { click: _vm.changePassword }
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.changePassword($event)
+                    }
+                  }
                 },
                 [_vm._v("Change Password")]
               )
