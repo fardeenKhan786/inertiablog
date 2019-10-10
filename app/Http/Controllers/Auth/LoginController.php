@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
+use Socialite;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -41,5 +45,37 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return Inertia::render('Auth/Login');
+    }
+
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $Githubuser = Socialite::driver('github')->user();
+        // dd($Githubuser);
+
+        $user = User::updateOrCreate(
+            [
+                'provider_id' => $Githubuser->getId(),
+            ],
+            [
+                'name' => $Githubuser->getName(),
+                'uuid' =>  Str::uuid(),
+                'provider_id' => $Githubuser->getId(),
+            ]
+        );
+
+        Auth::login($user, true);
+
+        return redirect($this->redirectTo);
     }
 }

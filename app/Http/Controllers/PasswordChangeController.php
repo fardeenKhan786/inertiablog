@@ -16,9 +16,6 @@ class PasswordChangeController extends Controller
                 'current_password' => 'required',
                 'password' => ' required|min:6|confirmed'
             ]
-            // [
-            //     'password.required' => 'Password must be minimum 6 Character Long',
-            // ]
         );
         $user = auth()->user();
         if (Hash::check($request->current_password, $user->password)) {

@@ -38,6 +38,9 @@ Route::post('/password-change', 'PasswordChangeController@store');
 
 Route::post('/profile-create', 'ProfileController@store');
 
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+
 
 
 

@@ -52,6 +52,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -299,13 +312,42 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
-              "loading-button",
-              {
-                ref: "submitButton",
-                staticClass: "w-full",
-                on: { click: _vm.login }
-              },
-              [_vm._v("Sign in")]
+              "div",
+              { staticClass: "flex" },
+              [
+                _c(
+                  "loading-button",
+                  {
+                    ref: "submitButton",
+                    staticClass: "w-1/3",
+                    on: { click: _vm.login }
+                  },
+                  [_vm._v("Sign in")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "loading-button",
+                  { staticClass: "w-2/3", attrs: { variant: "success" } },
+                  [
+                    _c("img", {
+                      staticClass: "items-center",
+                      attrs: {
+                        height: "32",
+                        width: "32",
+                        src:
+                          "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "pt-1 pl-1" }, [
+                      _c("a", { attrs: { href: "login/github" } }, [
+                        _vm._v("Sign in with GitHub")
+                      ])
+                    ])
+                  ]
+                )
+              ],
+              1
             ),
             _vm._v(" "),
             _c("heading", { staticClass: "mt-5 text-center" }, [

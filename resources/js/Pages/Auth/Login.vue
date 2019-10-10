@@ -26,7 +26,20 @@
 						href="#"
 					>Forgot Password?</a>
 				</div>
-				<loading-button ref="submitButton" class="w-full" @click="login">Sign in</loading-button>
+				<div class="flex">
+					<loading-button ref="submitButton" class="w-1/3" @click="login">Sign in</loading-button>
+					<loading-button variant="success" class="w-2/3">
+						<img
+							class="items-center"
+							height="32"
+							width="32"
+							src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"
+						/>
+						<span class="pt-1 pl-1">
+							<a href="login/github">Sign in with GitHub</a>
+						</span>
+					</loading-button>
+				</div>
 
 				<heading class="mt-5 text-center">
 					Don't have an account?
