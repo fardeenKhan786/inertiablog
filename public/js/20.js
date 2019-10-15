@@ -209,7 +209,7 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "p-2" },
-                    [_c("heading", [_vm._v(_vm._s(post.publish_at_formated))])],
+                    [_c("heading", [_vm._v(_vm._s(post.difference))])],
                     1
                   )
                 ])

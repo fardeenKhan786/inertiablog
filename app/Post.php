@@ -44,11 +44,14 @@ class Post extends Model
 
     public function toArray()
     {
+        //$this->touch();
+        $difference = $this->created_at->diffForHumans();
         return parent::toArray() + [
             'summary' => Str::limit($this->description, 100),
             'image_full_path' =>   $this->image != null  ?  url('/storage/' . $this->image) : null,
             'publish_at_formated' => $this->publish_at->format('d M, Y'),
             'published_at_formated' => $this->publish_at->format('M d'),
+            'difference' => $difference,
             'can' => [
                 'update' => Gate::denies('edit-post', $this),
                 'delete' => Gate::denies('edit-post', $this),

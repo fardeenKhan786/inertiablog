@@ -23,7 +23,7 @@
 								<a href="#" class="text-blue-600">{{post.category.category_name}}</a>
 							</div>
 							<div class="p-2">
-								<heading>{{post.publish_at_formated}}</heading>
+								<heading>{{post.difference}}</heading>
 							</div>
 						</div>
 					</div>

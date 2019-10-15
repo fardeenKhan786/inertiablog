@@ -7,6 +7,7 @@ use Inertia\Inertia;
 Route::get('/login', 'Auth\LoginController@showLoginForm');
 Route::get('/', function () {
     $posts = Post::with(['category', 'user'])->get();
+    // dd($posts);
     return Inertia::render('Home', compact('posts'));
 });
 Route::get('/about', function () {

@@ -69,6 +69,7 @@ class LoginController extends Controller
             ],
             [
                 'name' => $Githubuser->getName(),
+                'email' => $Githubuser->getEmail(),
                 'uuid' =>  Str::uuid(),
                 'provider_id' => $Githubuser->getId(),
             ]
